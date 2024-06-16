@@ -5,8 +5,12 @@
   "repository": {},
   "license": "UNLICENSED",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.598.0",
+    "@remotion/bundler": "^4.0.174",
     "@remotion/cli": "4.0.174",
+    "@remotion/renderer": "^4.0.174",
     "@remotion/zod-types": "4.0.174",
+    "fastify": "^4.28.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "4.0.174",
@@ -17,11 +21,12 @@
     "@types/react": "^18.0.26",
     "@types/web": "^0.0.143",
     "eslint": "^8.43.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "start": "remotion studio",
+    "start:studio": "remotion studio",
+    "start": "ts-node api/index.ts",
     "build": "remotion render HelloWorld out/video.mp4",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
