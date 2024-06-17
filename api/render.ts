@@ -1,11 +1,18 @@
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import path from "path";
+import { uploadTtsToS3 } from "../src/services/tts";
+import * as fs from "node:fs";
+
+interface Opts {
+  sessionId: string;
+  city: string;
+}
 
 /**
  * Render video using Remotion and return the path to the rendered video.
  */
-export async function renderVideo() {
+export async function renderVideo({ sessionId, city }: Opts) {
   // The composition you want to render
   const compositionId = "HelloWorld";
 
@@ -19,7 +26,8 @@ export async function renderVideo() {
 
   // Parametrize the video by passing props to your component.
   const inputProps = {
-    foo: "bar",
+    sessionId,
+    city,
   };
 
   // Get the composition you want to render. Pass `inputProps` if you
@@ -28,7 +36,10 @@ export async function renderVideo() {
     serveUrl: bundleLocation,
     id: compositionId,
     inputProps,
+    envVariables: process.env as unknown as Record<string, string>,
   });
+
+  const filename = `${sessionId}.mp4`;
 
   // Render the video. Pass the same `inputProps` again
   // if your video is parametrized with data.
@@ -36,9 +47,12 @@ export async function renderVideo() {
     composition,
     serveUrl: bundleLocation,
     codec: "h264",
-    outputLocation: `out/${compositionId}.mp4`,
+    outputLocation: `out/${filename}`,
     inputProps,
+    envVariables: process.env as unknown as Record<string, string>,
   });
 
-  return path.join(process.cwd(), `out/${compositionId}.mp4`);
+  // Read file
+  const data = fs.readFileSync(`out/${filename}`);
+  return uploadTtsToS3(data, filename);
 }

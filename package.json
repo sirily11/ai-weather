@@ -19,8 +19,10 @@
     "@types/mapbox-gl": "^3.1.0",
     "@types/mapbox__geo-viewport": "^0.5.3",
     "@types/node": "^20.14.2",
+    "@types/uuid": "^9.0.8",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
+    "dotenv": "^16.4.5",
     "fastify": "^4.28.0",
     "iconsax-react": "^0.0.8",
     "mapbox-gl": "^3.4.0",
@@ -29,6 +31,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "4.0.174",
+    "uuid": "^10.0.0",
     "weather-icons-animated": "^1.0.1",
     "zod": "3.22.3"
   },
@@ -41,7 +44,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "start:studio": "remotion studio --props='{\"city\": \"shenzhen\"}'",
+    "start:studio": "remotion studio --props='{\"city\": \"beijing\", \"sessionId\": \"126\"}'",
     "test:node": "ts-node src/services/ai.ts",
     "start": "ts-node api/index.ts",
     "build": "tsc",

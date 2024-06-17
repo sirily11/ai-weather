@@ -26,7 +26,12 @@ export interface AIWeatherResponse {
   /**
    * Image name used to render the weather suggestion
    */
-  image: SuggestionImage;
+  image: SuggestionImage[];
+
+  /**
+   * Audio file url
+   */
+  audio?: string;
 }
 
 export type AIResponse = AIWeatherResponse;
@@ -95,7 +100,7 @@ export async function generateWeatherResponse(
                     dialogue: {
                       type: "string",
                       description:
-                        "The dialogue used to generate the voiceover for the weather report. Give detailed suggestions on the weather condition at the end of the dialogue. Should be different from other weather reports.",
+                        "The dialogue used to generate the voiceover for the weather report. Give detailed suggestions on the weather condition at the end of the dialogue. Should be different from other weather reports. Don't include greetings at the beginning since this is a continuation of the previous dialogue. Include date at the beginning.",
                     },
                     image: {
                       type: "array",
@@ -154,5 +159,5 @@ export async function generateWeatherResponse(
     };
   });
 
-  return data as unknown as AIWeatherResponse;
+  return data as unknown as AIWeatherResponse[];
 }

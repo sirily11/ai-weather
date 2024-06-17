@@ -137,7 +137,7 @@ export function WeatherCard(props: Props) {
     >
       {/* eslint-disable-next-line @remotion/warn-native-media-tag */}
       <img
-        src={mapWeatherSuggestion(props.report.image)}
+        src={mapWeatherSuggestion(props.report.image[0])}
         style={{
           width: 400,
           height: 400,
