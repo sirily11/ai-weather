@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  app:
+    image: ghcr.io/sirily11/ai-weather
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - REMOTION_MAP_TOKEN=${REMOTION_MAP_TOKEN}
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+
+      - AWS_S3_ENDPOINT=${AWS_S3_ENDPOINT}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+      - AWS_S3_REGION=${AWS_S3_REGION}
+      - AWS_S3_CUSTOM_DOMAIN=${AWS_S3_CUSTOM_DOMAIN}
+
+      - AZURE_SPEECH_API_KEY=${AZURE_SPEECH_API_KEY}
+      - AZURE_SPEECH_ENDPOINT=${AZURE_SPEECH_ENDPOINT}
+      - AZURE_SPEAKER_NAME=${AZURE_SPEAKER_NAME}

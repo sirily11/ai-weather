@@ -1,13 +1,16 @@
 import { AIWeatherResponse } from "../../services/ai";
 import { springTiming, TransitionSeries } from "@remotion/transitions";
-import { AbsoluteFill, Audio, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, staticFile, useVideoConfig } from "remotion";
 import { fade } from "@remotion/transitions/fade";
 
-import { loadFont } from "@remotion/google-fonts/NotoSans";
+import { loadFont } from "@remotion/fonts";
 import { DateTitle } from "./DateTitle";
 import { WeatherCard } from "./WeatherCard";
 
-const { fontFamily } = loadFont();
+loadFont({
+  family: "Inter",
+  url: staticFile("NotoSansSC-Regular.ttf"),
+}).then(() => console.log("Font loaded"));
 
 type Props = {
   report: AIWeatherResponse;
@@ -27,7 +30,7 @@ export function WeatherReport(props: Props) {
               alignItems: "center",
               fontSize: 50,
               backgroundColor: "white",
-              fontFamily,
+              fontFamily: "Inter",
             }}
           >
             <DateTitle report={props.report} />
@@ -37,7 +40,7 @@ export function WeatherReport(props: Props) {
               justifyContent: "center",
               alignItems: "center",
               fontSize: 30,
-              fontFamily,
+              fontFamily: "Inter",
             }}
           >
             <WeatherCard report={props.report} />

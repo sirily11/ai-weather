@@ -1,10 +1,13 @@
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, staticFile } from "remotion";
 import { spring } from "remotion";
 import { useVideoConfig } from "remotion";
 import { interpolate, useCurrentFrame } from "remotion";
-import { loadFont } from "@remotion/google-fonts/NotoSans";
+import { loadFont } from "@remotion/fonts";
 
-const { fontFamily } = loadFont();
+loadFont({
+  family: "Inter",
+  url: staticFile("NotoSansSC-Regular.ttf"),
+}).then(() => console.log("Font loaded"));
 
 interface Props {
   city: string;
@@ -33,7 +36,7 @@ export function Title(props: Props) {
       <h1
         style={{
           opacity: frame < 30 ? fadeIn : fadeOut,
-          fontFamily,
+          fontFamily: "Inter",
           transform: `scale(${scale})`,
         }}
         className="text-red-500"

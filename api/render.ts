@@ -50,6 +50,7 @@ export async function renderVideo({ sessionId, city }: Opts) {
     outputLocation: `out/${filename}`,
     inputProps,
     envVariables: process.env as unknown as Record<string, string>,
+    concurrency: 1,
   });
 
   // Read file

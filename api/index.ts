@@ -4,6 +4,7 @@ import { renderVideo } from "./render";
 import { v4 } from "uuid";
 import path from "path";
 import { config } from "dotenv";
+import cors from "@fastify/cors";
 
 const file = path.join(process.cwd(), ".env");
 config({
@@ -34,6 +35,13 @@ fastify.route({
       },
     },
   },
+  preHandler: async (request, reply) => {
+    const adminKey = process.env.ADMIN_KEY;
+    const apiKey = request.headers["x-api-key"];
+    if (apiKey !== adminKey) {
+      reply.code(401).send({ message: "Unauthorized" });
+    }
+  },
   handler: async (request) => {
     const body = request.body as { city: string };
     const sessionId = v4();
@@ -49,7 +57,13 @@ fastify.route({
 (async () => {
   // Run the server!
   try {
-    await fastify.listen({ port: 3000 });
+    await fastify.register(cors, {
+      origin: "*",
+      allowedHeaders: "*",
+      methods: "*",
+    });
+
+    await fastify.listen({ port: 3000, host: "0.0.0.0" });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
