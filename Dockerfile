@@ -8,13 +8,9 @@ COPY package.json package*.json yarn.lock* pnpm-lock.yaml* bun.lockb* tsconfig.j
 COPY src ./src
 COPY api ./api
 
-# If you have a public folder:
-COPY public ./public
-
 # Install the right package manager and dependencies - see below for Yarn/PNPM
 RUN corepack enable
 RUN pnpm i
 
 # Run your application
-COPY render.mjs render.mjs
-CMD ["node", "render.mjs"]
+CMD ["pnpm", "start"]
