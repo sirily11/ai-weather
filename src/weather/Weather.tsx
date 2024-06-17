@@ -71,7 +71,10 @@ export function Weather() {
         backgroundColor: "white",
       }}
     >
-      <Audio src="https://pub-3fcb239d0b754e8faed02041af2e2ce8.r2.dev/rainny-bg.mp3" />
+      <Audio
+        src="https://pub-3fcb239d0b754e8faed02041af2e2ce8.r2.dev/rainny-bg.mp3"
+        volume={0.5}
+      />
       <TransitionSeries>
         <TransitionSeries.Sequence durationInFrames={200}>
           <SequenceOne location={weatherInfo.location} />

@@ -48,7 +48,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "start:studio": "remotion studio --props='{\"city\": \"beijing\", \"sessionId\": \"126\"}'",
+    "start:studio": "remotion studio --props='{\"city\": \"beijing\", \"sessionId\": \"128\"}'",
     "test:node": "ts-node src/services/ai.ts",
     "start": "ts-node api/index.ts",
     "build": "tsc",

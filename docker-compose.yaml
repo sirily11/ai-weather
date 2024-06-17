@@ -2,12 +2,12 @@ version: "3.9"
 
 services:
   app:
-    image: ghcr.io/sirily11/ai-weather
+    image: ghcr.io/sirily11/ai-weather:v1.0.1
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - REMOTION_MAP_TOKEN=${REMOTION_MAP_TOKEN}
@@ -23,3 +23,4 @@ services:
       - AZURE_SPEECH_API_KEY=${AZURE_SPEECH_API_KEY}
       - AZURE_SPEECH_ENDPOINT=${AZURE_SPEECH_ENDPOINT}
       - AZURE_SPEAKER_NAME=${AZURE_SPEAKER_NAME}
+      - ADMIN_KEY=${ADMIN_KEY}
